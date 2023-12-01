@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈</title>
+</head>
+<body>
+일반 홈페이지 인덱스
+
+<th:block sec:authorize="isAnonymous()">
+    <a th:href="@{/login}" class="nav-item nav-link">로그인</a>
+    <a th:href="@{/join}" class="nav-item nav-link">회원가입</a>
+</th:block>
+<th:block sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}" class="nav-item nav-link">로그아웃</a>
+    <a th:href="@{/mypage}" class="nav-item nav-link">마이페이지</a>
+</th:block>
+</body>
+</html>
