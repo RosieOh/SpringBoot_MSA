@@ -1,0 +1,21 @@
+type Query {
+    findAll: [Person]
+    findById(id: ID!): Person
+}
+
+type Person {
+    id: ID!
+    firstName: String
+    lastName: String
+    phoneNumber: String
+    email: String
+    address: Address
+}
+
+type Address {
+    id: ID!
+    address: String
+    city: String
+    state: String
+    zip: String
+}
