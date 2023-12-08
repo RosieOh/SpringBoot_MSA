@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>서비스 List</title>
+    <script src="/js/includeHTML.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+
+<body>
+<nav include-html="/html/nav.html"></nav>
+<div class="container">
+    <br>
+
+    <a href="/simple/serviceInfo"> 서비스 등록하기 </a>
+    <div>
+        <h1>서비스 List</h1>
+    </div>
+
+    <!--    <form action="/simple/search/bulk" method="post">-->
+    <div class="tableSubHeadingColor">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>설명</th>
+                <th>Bulk Query</th>
+                <th>Bulk</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="service : ${services}">
+
+                <td th:text="${service.serviceId}" id="serviceId"></td>
+                <td th:text="${service.serviceDetail}"></td>
+                <td th:text="${service.bulkQuery}"></td>
+                <td><a class="btn btn-primary" th:href="@{/simple/search/bulk(service_id=${service.serviceId})}"
+                       onclick="return confirm('Bulk를 할까요?');"><span
+                        class="glyphicon glyphicon-save"></span>Bulk</a></td>
+<!--                <td>-->
+<!--                    <button class="btn btn-primary" id="bth-bulk">Bulk</button>-->
+<!--                </td>-->
+            </tr>
+            </tbody>
+        </table>
+
+        <nav style="text-align: center;">
+            <ul class="pagination"
+                th:with="start=${T(Math).floor(boardList.number/10)*10 + 1},
+                    last=(${start + 9 < boardList.totalPages ? start + 9 : boardList.totalPages})">>
+
+                <li class="disabled">
+                    <a class="page-link" href="#" aria-label="First">
+                        <span aria-hidden="true">First</span>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&lt;</span>
+                    </a>
+                </li>
+                <li class="active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li>
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&gt;</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" href="#" aria-label="Last">
+                        <span aria-hidden="true">Last</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    <!--    </form>-->
+
+</div> <!-- /container -->
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script>
+    includeHTML();
+/*    $(document).ready(function () {
+
+        $("btn-bulk").on('click', function(){
+            var form = {
+                service_id : $("#serviceId").val()
+            }
+            $.ajax({
+                type: "POST",
+                url: "/simple/search/checkIndexExist",
+                data: form,
+                success: function (data) {
+                    $('#result').text(data);
+                },
+                error: function() {
+                    alert("error");
+                }
+            });
+        // $("#bth-bulk").click(function () {
+        //     fire_ajax_submit();
+        // });
+    });*/
+
+/*    function fire_ajax_submit() {
+        var serviceId = $("#serviceId").val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/simple/search/checkIndexExist",
+            data: serviceId,
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                if(data.msg === "Exist"){
+                    if(confirm("색인 건수 : " + data.count + "\n삭제하고 재생성할까요?")){
+                        let url = "/simple/search/bulk?service_id=service3";
+                        location.href = url;
+                    }else{
+                        location.href = "/simple/serviceList";
+                    }
+                } else{
+                    let url = "/simple/search/bulk?"+serviceId;
+                    location.href = url;
+                }
+            }
+        });
+    }*/
+</script>
+</html>

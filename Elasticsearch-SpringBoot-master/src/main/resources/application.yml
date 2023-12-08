@@ -1,0 +1,24 @@
+logging:
+  pattern:
+    console: "[saramin Test] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+
+spring:
+  main:
+    banner-mode: OFF
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/search_engine?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 1234
+
+elasticsearch:
+  host: localhost
+  port: 9200
+
+server:
+  port: 8001
+  
