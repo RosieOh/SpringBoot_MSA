@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수식 편집기</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div style="height:260px">
+        <img src="images/mathquill.gif" alt="preview">
+    </div>
+    <div id="mathquill-input" style="width:300px;"></div>
+    <button id="submit-btn">Submit</button>
+    <div>입력된 값 : </div><div id="output"></div>
+    <div>출력된 값 : </div><div id="result" class="mq-math-mode" style="height:60px;"></div>
+</div>
+<script>
+    $(document).ready(function() {
+        var MQ = MathQuill.getInterface(2); // MathQuill 인터페이스 가져오기
+        var mathField = MQ.MathField($('#mathquill-input')[0], { // 입력 상자 생성
+            spaceBehavesLikeTab: true,
+            handlers: {
+                edit: function() {
+                    updateOutput(mathField.latex()); // 입력 상자의 내용이 변경될 때마다 출력 업데이트
+                }
+            }
+        });
+        function updateOutput(latex) { // 출력 업데이트 함수
+            $('#output').html(latex);
+            $("#result").html(mathField.html());
+        }
+        $('#submit-btn').click(function() { // 제출 버튼 클릭 핸들러
+            var latex = mathField.latex(); // 입력 상자의 LaTeX 내용 가져오기
+            alert('You entered: ' + latex);
+        });
+
+    });
+</script>
+</body>
+</html>
