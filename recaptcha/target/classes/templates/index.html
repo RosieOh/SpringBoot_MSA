@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  data-layout-decorate="~{layout/default}">
+<div class="container-fluid" layout:fragment="content">
+	<style type="text/css">
+		.hover{background-color:#fdf7df;}
+		.graytd{background-color:#fcfcfc;}
+	</style>
+	<script type="text/javascript">
+	  $(function() {
+		console.log('Hello World');
+	  });
+	</script>
+		<!-- Breadcrumbs-->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">소 메뉴1</li>
+			<li class="breadcrumb-item active" style="color: #007bff;">기능 1</li>
+		</ol>
+		<div class="card mb-3">
+			<div class="card-header">
+				<i class="fas fa-file"></i>  기능상세
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					 
+						내용추가  			
+								
+				</div>
+			</div>
+			<div class="card-footer small text-muted" th:text="|Updated at ${#calendars.format(#calendars.createNow(), 'HH:mm')}|">Updated at 11:59 PM</div>
+		</div>
+</div>
+</html>

@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "google.recaptcha.key",
+      "type": "com.example.demo.util.CaptchaSettings",
+      "sourceType": "com.example.demo.util.CaptchaSettings"
+    }
+  ],
+  "properties": [
+    {
+      "name": "google.recaptcha.key.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.util.CaptchaSettings"
+    },
+    {
+      "name": "google.recaptcha.key.site",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.util.CaptchaSettings"
+    },
+    {
+      "name": "google.recaptcha.key.url",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.util.CaptchaSettings"
+    }
+  ],
+  "hints": []
+}

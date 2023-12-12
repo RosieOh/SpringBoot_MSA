@@ -1,0 +1,20 @@
+application:
+   version: v1.0.0
+   title: amdin-site
+
+spring:
+    devtools:
+       livereload:
+         enabled: true
+       restart:
+         enabled: true
+
+google:
+  recaptcha:
+    key:
+      site: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+      secret: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+      url: https://www.google.com/recaptcha/api/siteverify
+
+server:
+  port: 8087
